@@ -598,6 +598,9 @@ std::vector<double> EchoProbeInitiator::enumerateArbitrarySamplingRates() {
 }
 
 std::vector<double> EchoProbeInitiator::enumerateCarrierFrequencies() {
+    if (!parameters.custom_channels.empty())
+        return parameters.custom_channels;
+
     #ifndef _WIN32
     if (false && isIntelMVMTypeNIC(nic->getFrontEnd()->getFrontEndType())) {
         return enumerateIntelMVMCarrierFrequencies();
